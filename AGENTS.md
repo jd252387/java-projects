@@ -28,6 +28,13 @@ These instructions apply to the entire repository unless a deeper `AGENTS.md` ov
 - Prefer mature, well-maintained libraries over custom utility code.
 - When adding a dependency, keep the choice pragmatic and justified by simpler code or clearer behavior.
 
+## Documentation
+- Use the Context7 MCP server when you need library or framework documentation, API details, or usage examples.
+- Resolve the library first with `mcp__context7__resolve-library-id`, then read the docs with `mcp__context7__query-docs`.
+- Prefer Context7 over generic web search for implementation details, version-specific behavior, and official API guidance.
+- Keep documentation queries specific to the library, version, and feature you are changing so the retrieved guidance is precise.
+- When documentation materially informs a code change, mention the source briefly in the final handoff.
+
 ## Build And Testing
 - Before submitting any change, verify it locally.
 - Always run the relevant Gradle checks and make sure the project compiles.
