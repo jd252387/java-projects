@@ -46,6 +46,7 @@ These instructions apply to the entire repository unless a deeper `AGENTS.md` ov
 - Always run the application or requested workflow and confirm the requested behavior works end to end.
 - A task is not complete until the code has been compiled and exercised, not just statically edited.
 - Use available MCP tools when helpful for validation, inspection, or running the system.
+- Use the docker-compose.yml when you need to initialize a Solr instance to test your work. 
 
 ## Default Verification Flow
 - Run formatting or linting if the project uses it.
