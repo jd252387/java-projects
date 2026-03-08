@@ -4,6 +4,7 @@
 These instructions apply to the entire repository unless a deeper `AGENTS.md` overrides them.
 
 ## Project Defaults
+- This repository is for writing plugins for Apache Solr.
 - Use Java 21.
 - Use Gradle with Kotlin DSL only: `build.gradle.kts`, `settings.gradle.kts`.
 - Prefer a simple project structure and keep configuration minimal.
@@ -15,8 +16,12 @@ These instructions apply to the entire repository unless a deeper `AGENTS.md` ov
 - Prefer JDK features that reduce verbosity, especially `record` classes, sealed types when appropriate, and modern collection/utility APIs.
 - Do not reinvent common infrastructure or generic utilities. Prefer established libraries and framework features over custom implementations.
 - Favor functional style where it improves clarity. Use Streams and `Optional` when they simplify the code, but avoid forcing them into code paths that become harder to read or debug.
+- Prefer established Solr extension points and existing Solr plugin patterns over custom frameworks or wrappers.
 
 ## Coding Expectations
+- Treat Apache Solr documentation and Solr source code as primary references when designing or implementing plugin behavior.
+- Read the relevant Solr reference documentation before writing code in an area that touches Solr APIs, plugin lifecycles, configuration, request handling, indexing, or search behavior.
+- Inspect the corresponding Solr source code and tests to confirm how extension points are intended to be used and to align with existing conventions.
 - Write production code that is concise and maintainable.
 - Avoid unnecessary abstraction, premature generalization, and speculative extension points.
 - Prefer immutable data and straightforward control flow.
