@@ -1,0 +1,36 @@
+services:
+  zookeeper:
+    image: zookeeper:3.9
+    environment:
+      ZOO_4LW_COMMANDS_WHITELIST: mntr,conf,ruok
+    healthcheck:
+      test: ["CMD-SHELL", "echo ruok | nc -w 2 localhost 2181 | grep imok"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  solr1:
+    image: solr:10
+    ports:
+      - "8983:8983"
+      - "5005:5005"
+    environment:
+      ZK_HOST: zookeeper:2181
+      SOLR_HOST: solr1
+      SOLR_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+
+  solr2:
+    image: solr:10
+    ports:
+      - "8984:8983"
+      - "5006:5005"
+    environment:
+      ZK_HOST: zookeeper:2181
+      SOLR_HOST: solr2
+      SOLR_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+    depends_on:
+      zookeeper:
+        condition: service_healthy
