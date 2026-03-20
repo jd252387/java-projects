@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+  <luceneMatchVersion>10.0.0</luceneMatchVersion>
+
+  <schemaFactory class="ClassicIndexSchemaFactory" />
+
+  <requestDispatcher handleSelect="true">
+    <requestParsers
+        enableRemoteStreaming="false"
+        multipartUploadLimitInKB="2048"
+        formdataUploadLimitInKB="2048" />
+  </requestDispatcher>
+
+  <query>
+    <maxBooleanClauses>${solr.max.booleanClauses:1024}</maxBooleanClauses>
+  </query>
+
+  <requestHandler name="/select" class="solr.SearchHandler" />
+
+  <requestHandler name="/sample-select" class="solr.SearchHandler">
+    <lst name="defaults">
+      <str name="f.title.qf">title_en title_fr</str>
+    </lst>
+  </requestHandler>
+
+  <queryParser name="basic_exact" class="com.example.projects.BasicExactQParserPlugin" />
+  <queryParser name="basic_range" class="com.example.projects.BasicRangeQParserPlugin" />
+  <queryParser name="basic_text" class="com.example.projects.BasicTextQParserPlugin" />
+</config>

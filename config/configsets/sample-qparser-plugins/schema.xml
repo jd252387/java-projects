@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="sample-qparser-plugins" version="1.7">
+  <uniqueKey>id</uniqueKey>
+
+  <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true" />
+  <fieldType name="pint" class="solr.IntPointField" docValues="true" />
+  <fieldType name="pdouble" class="solr.DoublePointField" docValues="true" />
+  <fieldType name="plong" class="solr.LongPointField" docValues="true" />
+  <fieldType name="pdate" class="solr.DatePointField" docValues="true" />
+  <fieldType name="text_ws" class="solr.TextField">
+    <analyzer type="index">
+      <tokenizer class="solr.WhitespaceTokenizerFactory" />
+      <filter class="solr.LowerCaseFilterFactory" />
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.WhitespaceTokenizerFactory" />
+      <filter class="solr.LowerCaseFilterFactory" />
+    </analyzer>
+  </fieldType>
+
+  <field name="_version_" type="string" indexed="true" stored="true"/>
+  <field name="id" type="string" indexed="true" stored="true" required="true" />
+  <field name="sku" type="string" indexed="true" stored="true" />
+  <field name="title" type="text_ws" indexed="true" stored="true" />
+  <field name="title_en" type="text_ws" indexed="true" stored="true" />
+  <field name="title_fr" type="text_ws" indexed="true" stored="true" />
+  <field name="price" type="pint" indexed="true" stored="true" />
+  <field name="rating" type="pdouble" indexed="true" stored="true" />
+  <field name="timestamp" type="plong" indexed="true" stored="true" />
+  <field name="published_at" type="pdate" indexed="true" stored="true" />
+</schema>
