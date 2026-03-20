@@ -1,6 +1,7 @@
 services:
   zookeeper:
     image: zookeeper:3.9
+    ports: ["2181:2181"]
     environment:
       ZOO_4LW_COMMANDS_WHITELIST: mntr,conf,ruok
     healthcheck:
@@ -14,6 +15,8 @@ services:
     ports:
       - "8983:8983"
       - "5005:5005"
+    volumes:
+      - ./build/libs:/opt/solr/server/solr/lib:ro
     environment:
       ZK_HOST: zookeeper:2181
       SOLR_HOST: solr1
@@ -27,6 +30,8 @@ services:
     ports:
       - "8984:8983"
       - "5006:5005"
+    volumes:
+      - ./build/libs:/opt/solr/server/solr/lib:ro
     environment:
       ZK_HOST: zookeeper:2181
       SOLR_HOST: solr2
