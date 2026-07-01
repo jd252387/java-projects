@@ -147,8 +147,8 @@ class BasicQParserTest {
     }
 
     private static void assertClause(BooleanClause clause, String field) {
-        assertEquals(BooleanClause.Occur.SHOULD, clause.occur());
-        assertEquals(new TermQuery(new Term(field, "value")), clause.query());
+        assertEquals(BooleanClause.Occur.SHOULD, clause.getOccur());
+        assertEquals(new TermQuery(new Term(field, "value")), clause.getQuery());
     }
 
     private static ModifiableSolrParams localParams(String name, String value) {

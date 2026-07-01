@@ -223,8 +223,8 @@ class BasicExactQParserTest {
     }
 
     private static void assertClause(BooleanClause clause, String field, String value) {
-        assertEquals(BooleanClause.Occur.SHOULD, clause.occur());
-        assertEquals(markerQuery(field, value), clause.query());
+        assertEquals(BooleanClause.Occur.SHOULD, clause.getOccur());
+        assertEquals(markerQuery(field, value), clause.getQuery());
     }
 
     private static Query markerQuery(String field, String value) {

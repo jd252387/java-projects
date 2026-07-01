@@ -77,7 +77,7 @@ class BasicTextQParserTest {
             assertClause(
                     booleanQuery.clauses().get(1), expectedFieldQuery(analyzer, "title", "two words", true));
             assertClause(booleanQuery.clauses().get(2), expectedFieldQuery(analyzer, "title", "world", false));
-            assertInstanceOf(PhraseQuery.class, booleanQuery.clauses().get(1).query());
+            assertInstanceOf(PhraseQuery.class, booleanQuery.clauses().get(1).getQuery());
         }
     }
 
@@ -321,8 +321,8 @@ class BasicTextQParserTest {
     }
 
     private static void assertClause(BooleanClause clause, Query expectedQuery) {
-        assertEquals(BooleanClause.Occur.SHOULD, clause.occur());
-        assertEquals(expectedQuery, clause.query());
+        assertEquals(BooleanClause.Occur.SHOULD, clause.getOccur());
+        assertEquals(expectedQuery, clause.getQuery());
     }
 
     private static Query expectedFieldQuery(
