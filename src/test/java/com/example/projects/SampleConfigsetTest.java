@@ -25,7 +25,7 @@ import org.w3c.dom.Element;
 
 class SampleConfigsetTest {
     private static final Path CONFIGSET_CONF_DIR =
-            Path.of("config", "configsets", "sample-qparser-plugins", "conf");
+            Path.of("config", "configsets", "sample-qparser-plugins");
 
     @Test
     void solrconfigRegistersEveryCustomQParserPlugin() throws Exception {
