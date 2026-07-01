@@ -1,21 +1,4 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-package com.example.projects;
+package commrogue.basicqparsers.projects;
 
 import java.util.*;
 
@@ -27,6 +10,32 @@ import org.apache.solr.request.SolrQueryRequest;
 import org.apache.solr.search.QParser;
 import org.apache.solr.search.SyntaxError;
 
+/**
+ * Shared base for all basic query parsers.
+ *
+ * <p>Every subclass is invoked as {@code {!name field=F ...}} where {@code name}
+ * is the parser's plugin name and {@code field} is required.</p>
+ *
+ * <h3>Aliases</h3>
+ *
+ * <p>Request parameters of the form {@code f.&lt;alias&gt;.qf=fieldA fieldB}
+ * define field aliases. When {@code field} matches an alias, the parser fans
+ * out into a {@code BooleanQuery} of {@code SHOULD} clauses, calling
+ * {@link #parseImpl(String)} once per resolved field.</p>
+ *
+ * <p>Aliases may target other aliases (recursive resolution with cycle
+ * detection) and are cached in the request context so each alias is resolved
+ * only once per request.</p>
+ *
+ * <p>Example: {@code f.colors.qf=red green blue} — querying
+ * {@code field=colors} runs the parser against {@code red}, {@code green},
+ * and {@code blue}.</p>
+ *
+ * <h3>Subclass contract</h3>
+ *
+ * <p>Subclasses implement {@link #parseImpl(String)} — validate the field
+ * type against the schema, build the Lucene {@link Query}, and return it.</p>
+ */
 public abstract class BasicQParser extends QParser {
     protected final String ALIASES_CONTEXT_KEY = "aliases";
     protected BasicQParser(

@@ -1,4 +1,4 @@
-package com.example.projects;
+package commrogue.basicqparsers.projects;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,22 @@ import org.apache.solr.schema.SchemaField;
 import org.apache.solr.schema.TextField;
 import org.apache.solr.search.SyntaxError;
 
+/**
+ * Full-text query parser for tokenized text fields.
+ *
+ * <h3>Syntax</h3>
+ *
+ * <pre>{@code {!text field=body}(hello world "exact phrase")}</pre>
+ *
+ * The query string must be wrapped in parentheses. Unquoted terms are tokenized
+ * and matched as {@code SHOULD} clauses; quoted phrases are matched as
+ * {@code MUST} clauses (all terms required, in order). Multiple terms/quotes
+ * are combined with {@code SHOULD}, so more matching terms score higher.
+ *
+ * <h3>Field requirements</h3>
+ * The field type must extend {@link TextField}, be tokenized, and have a query
+ * analyzer configured. Aliases are resolved via the base class.
+ */
 public class BasicTextQParser extends BasicQParser {
     public BasicTextQParser(
             String qstr, SolrParams localParams, SolrParams params, SolrQueryRequest req) {

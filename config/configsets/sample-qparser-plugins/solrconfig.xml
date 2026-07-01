@@ -23,7 +23,7 @@
     </lst>
   </requestHandler>
 
-  <queryParser name="basic_exact" class="com.example.projects.BasicExactQParserPlugin" />
-  <queryParser name="basic_range" class="com.example.projects.BasicRangeQParserPlugin" />
-  <queryParser name="basic_text" class="com.example.projects.BasicTextQParserPlugin" />
+  <queryParser name="basic_exact" class="commrogue.basicqparsers.projects.BasicExactQParserPlugin" />
+  <queryParser name="basic_range" class="commrogue.basicqparsers.projects.BasicRangeQParserPlugin" />
+  <queryParser name="basic_text" class="commrogue.basicqparsers.projects.BasicTextQParserPlugin" />
 </config>

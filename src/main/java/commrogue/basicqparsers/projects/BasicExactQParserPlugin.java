@@ -1,4 +1,4 @@
-package com.example.projects;
+package commrogue.basicqparsers.projects;
 
 import org.apache.solr.common.params.SolrParams;
 import org.apache.solr.request.SolrQueryRequest;

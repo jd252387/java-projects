@@ -1,4 +1,4 @@
-package com.example.projects;
+package commrogue.basicqparsers.projects;
 
 import org.apache.lucene.search.Query;
 import org.apache.solr.common.SolrException;
@@ -7,6 +7,22 @@ import org.apache.solr.request.SolrQueryRequest;
 import org.apache.solr.schema.SchemaField;
 import org.apache.solr.search.SyntaxError;
 
+/**
+ * Exact-match query parser for non-tokenized text, numeric, and date fields.
+ *
+ * <h3>Syntax</h3>
+ *
+ * <pre>{@code {!exact field=sku value=ABC-123}}</pre>
+ *
+ * The value is passed directly to the field type's {@code getFieldQuery}, so
+ * it is <em>not</em> analyzed or tokenized — the entire string must match
+ * exactly. For numeric and date fields, the value is parsed according to the
+ * field type's native format.
+ *
+ * <h3>Field requirements</h3>
+ * Non-tokenized {@code Utf8Field} (e.g. {@code StrField}), numeric, or date
+ * field types. Aliases are resolved via the base class.
+ */
 public class BasicExactQParser extends BasicQParser {
     public BasicExactQParser(
             String qstr, SolrParams localParams, SolrParams params, SolrQueryRequest req) {

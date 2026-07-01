@@ -1,4 +1,4 @@
-package com.example.projects;
+package commrogue.basicqparsers.projects;
 
 import org.apache.lucene.search.Query;
 import org.apache.solr.common.SolrException;
@@ -7,6 +7,29 @@ import org.apache.solr.request.SolrQueryRequest;
 import org.apache.solr.schema.SchemaField;
 import org.apache.solr.search.SyntaxError;
 
+/**
+ * Range query parser for numeric and date fields.
+ *
+ * <h3>Syntax</h3>
+ *
+ * <pre>{@code {!range field=price gte=10 lt=100}}</pre>
+ *
+ * Supports four optional bounds:
+ * <ul>
+ *   <li>{@code gt}  — greater than (exclusive)</li>
+ *   <li>{@code gte} — greater than or equal (inclusive)</li>
+ *   <li>{@code lt}  — less than (exclusive)</li>
+ *   <li>{@code lte} — less than or equal (inclusive)</li>
+ * </ul>
+ *
+ * At least one bound is required. {@code gt} and {@code gte} are mutually
+ * exclusive; likewise {@code lt} and {@code lte}.
+ *
+ * <h3>Field requirements</h3>
+ * Numeric ({@code TrieIntField}, {@code TrieLongField}, {@code TrieFloatField},
+ * {@code TrieDoubleField}) or date ({@code TrieDateField}, {@code DatePointField})
+ * field types. Aliases are resolved via the base class.
+ */
 public class BasicRangeQParser extends BasicQParser {
     public BasicRangeQParser(
             String qstr, SolrParams localParams, SolrParams params, SolrQueryRequest req) {

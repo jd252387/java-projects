@@ -10,8 +10,8 @@ Custom Apache Solr **query parser plugins** (`solr-core` 9.8.1), built as a jar 
 
 - `./gradlew build` — compile, test, and produce the plugin jar at `build/libs/projects.jar`
 - `./gradlew test` — run the JUnit 5 suite
-- Single test class: `./gradlew test --tests "com.example.projects.BasicExactQParserTest"`
-- Single method: `./gradlew test --tests "com.example.projects.BasicExactQParserTest.parseRejectsUnknownFields"`
+- Single test class: `./gradlew test --tests "commrogue.basicqparsers.projects.BasicExactQParserTest"`
+- Single method: `./gradlew test --tests "commrogue.basicqparsers.projects.BasicExactQParserTest.parseRejectsUnknownFields"`
 - `docker compose up` — SolrCloud (ZooKeeper 3.9 + two Solr 9.8.1 nodes). Build the jar first; `build/libs` is mounted read-only into each node at `/opt/solr/lib`. Nodes: `solr1` on 8983, `solr2` on 8984; JDWP debug on 5005/5006.
 
 Toolchain is Java 25 (Gradle 9.4.0 via wrapper); Gradle downloads the JDK if needed.
