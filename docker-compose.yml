@@ -11,7 +11,7 @@ services:
       retries: 12
 
   solr1:
-    image: solr:10
+    image: solr:11-local-2
     ports:
       - "8983:8983"
       - "5005:5005"
@@ -25,17 +25,17 @@ services:
       zookeeper:
         condition: service_healthy
 
-  solr2:
-    image: solr:10
-    ports:
-      - "8984:8983"
-      - "5006:5005"
-    volumes:
-      - ./build/libs:/opt/solr/server/solr/lib:ro
-    environment:
-      ZK_HOST: zookeeper:2181
-      SOLR_HOST: solr2
-      SOLR_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
-    depends_on:
-      zookeeper:
-        condition: service_healthy
+  # solr2:
+  #   image: solr:10
+  #   ports:
+  #     - "8984:8983"
+  #     - "5006:5005"
+  #   volumes:
+  #     - ./build/libs:/opt/solr/server/solr/lib:ro
+  #   environment:
+  #     ZK_HOST: zookeeper:2181
+  #     SOLR_HOST: solr2
+  #     SOLR_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+  #   depends_on:
+  #     zookeeper:
+  #       condition: service_healthy
